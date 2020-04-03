@@ -2,8 +2,7 @@ import { Injectable, OnInit } from "@angular/core";
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpParams,
-  HttpHeaders
+  HttpParams
 } from "@angular/common/http";
 
 import { BehaviorSubject, combineLatest, EMPTY, from, merge, Subject, throwError, of, Observable } from 'rxjs';
@@ -13,9 +12,6 @@ import { environment } from "../../environments/environment";
 import { AssetInfo } from "../models/AssetInfo";
 import { AssetElement } from "../models/AssetElement";
 import { AssetUIComponent } from "../models/AssetUIComponent";
-import * as FileSaver from 'file-saver';
-import * as XLSX from 'xlsx';
-import { dateFieldName } from "@telerik/kendo-intl";
 import { AssetHistory } from "../models/AssetHistory";
 import { Asset } from './asset';
 import { AssetCategoryService } from '../asset-categories/asset-category.service';
@@ -33,19 +29,6 @@ export class AssetService implements OnInit {
     private http: HttpClient
   ) { }
 
-  private market = new BehaviorSubject<number>(null);
-  private assetElementAnnouncedSources = new Subject<any>();
-  assetElementAnnounceds$ = this.assetElementAnnouncedSources.asObservable();
-  announceAssetElements(assetElements: AssetElement[]) {
-    // announceAssetElements(assets: AssetDetail[]) {
-    this.assetElementAnnouncedSources.next(assetElements);
-  }
-  private assetAddAnnouncedSources = new Subject<any>();
-  assetAddAnnounceds$ = this.assetAddAnnouncedSources.asObservable();
-  announceAssetAdd(assetElements: AssetElement[]) {
-    this.assetAddAnnouncedSources.next(assetElements);
-  }
-  
   getProducts(): Observable<Asset[]> {
     return this.http.get<Asset[]>('api/products')
       .pipe(
@@ -55,15 +38,6 @@ export class AssetService implements OnInit {
   }
   
   ngOnInit() { }
-
-  GetTheMarket() {
-    return this.market.asObservable();
-  }
-
-  SetTheMarket(market) {
-    this.market.next(market);
-
-  }
 
   // .get(environment.serverPath + environment.marketUrl, { params })
   GetMarket(createdBy: string) {
@@ -93,7 +67,6 @@ export class AssetService implements OnInit {
       .get(environment.serverPath + "api/asset/assettype", { params })
       .pipe(catchError(this.handleError));
   }
-
 
   SERVER_URL: string = "http://localhost:8080/api/";
 
@@ -130,98 +103,6 @@ export class AssetService implements OnInit {
       .pipe(catchError(this.handleError));
   }
 
-  EditAsset(object) {
-    return this.http
-      .post<boolean>(environment.serverPath + "api/asset/updateasset", object)
-      .pipe(catchError(this.handleError));
-  }
-
-  RemoveAsset(assets: AssetInfo) {    //assets: AssetInfo[]
-    return this.http
-      .post<AssetInfo[]>(environment.serverPath + "api/asset/deleteasset", assets)
-      .pipe(catchError(this.handleError));
-  }
-
-  AddAsset(AssetInfo) {
-    return this.http
-      .post<AssetInfo>(environment.serverPath + "api/asset/addasset", AssetInfo)   //addasset
-      .pipe(catchError(this.handleError));
-  }
-
-  AddAssetType(aui: AssetUIComponent[]) {
-    return this.http
-      .post<AssetInfo[]>(environment.serverPath + "api/asset/addassettype", aui)
-      .pipe(catchError(this.handleError));
-  }
-
-  UpdateAssetType(aui: AssetUIComponent[]) {
-    return this.http
-      .post<AssetInfo[]>(environment.serverPath + "api/asset/updateassettype", aui)
-      .pipe(catchError(this.handleError));
-  }
-
-
-  GetUsers(MarketId: number, IncludeInactive: boolean) {
-    const params = new HttpParams()
-      .set("MarketId", MarketId.toString())
-      .set("IncludeInactive", IncludeInactive.toString());
-
-    return this.http
-      .get(environment.serverPath + "api/asset/getusers", { params })
-      .pipe(catchError(this.handleError));
-  }
-
-  GetAssetManagers(MarketId: number, IncludeInactive: boolean) {
-    const params = new HttpParams()
-      .set("MarketId", MarketId.toString())
-      .set("IncludeInactive", IncludeInactive.toString());
-
-    return this.http
-      .get(environment.serverPath + "api/asset/getassetusers", { params })
-      .pipe(catchError(this.handleError));
-  }
-
-  CheckinAsset(assets: AssetInfo) { //assets: AssetInfo[]
-    return this.http
-      .post<AssetInfo[]>(environment.serverPath + "api/asset/checkinasset", assets)
-      .pipe(catchError(this.handleError));
-  }
-
-  CheckoutAsset(assets: AssetInfo) {   //assets: AssetInfo[]
-    return this.http
-      .post<AssetInfo[]>(environment.serverPath + "api/asset/checkoutasset", assets)
-      .pipe(catchError(this.handleError));
-  }
-
-  MarkAssetDefective(assets: AssetInfo) {   //assets: AssetInfo[]
-    return this.http
-      .post<AssetInfo[]>(environment.serverPath + "api/asset/defectiveasset", assets)
-      .pipe(catchError(this.handleError));
-  }
-
-  GetFacilityList(MarketId: number) {
-    const params = new HttpParams()
-      .set("MarketId", MarketId.toString());
-
-    return this.http
-      .get(environment.serverPath + "api/asset/getfacilitylist", { params })
-      .pipe(catchError(this.handleError));
-  }
-
-  GetElementTypesList(MarketId: number) {
-    const params = new HttpParams()
-      .set("MarketId", MarketId.toString());
-
-    return this.http
-      .get(environment.serverPath + "api/asset/getelementtypes", { params })
-      .pipe(catchError(this.handleError));
-  }
-
-  ChangeFacility(object) {
-    return this.http
-      .post<boolean>(environment.serverPath + "api/asset/updatefacility", object)
-      .pipe(catchError(this.handleError));
-  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -253,34 +134,5 @@ export class AssetService implements OnInit {
       .pipe(catchError(this.handleError));
 
   }
-
-
-  //these are for exporting excel
-  public exportAsExcelFile(json: any[], excelFileName: string): void {
-
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
-    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    this.saveAsExcelFile(excelBuffer, excelFileName);
-  }
-
-  private saveAsExcelFile(buffer: any, fileName: string): void {
-    const data: Blob = new Blob([buffer], {
-      type: EXCEL_TYPE
-    });
-
-    let dt = new Date();
-    let tmpDateString1 = dt.getMonth() + 1 < 10 ? "0" + (dt.getMonth() + 1).toString() : (dt.getMonth() + 1).toString();
-    let tmpDateString2 = dt.getDate() < 10 ? "0" + (dt.getDate()).toString() : dt.getDate().toString();
-    let tmpDateString3 = dt.getFullYear().toString();
-    let tmpDateString4 = dt.getHours() < 10 ? "0" + (dt.getHours().toString()) : dt.getHours().toString();
-    let tmpDateString5 = dt.getMinutes() < 10 ? "0" + (dt.getMinutes().toString()) : dt.getMinutes().toString();
-    let tmpDateString6 = dt.getSeconds() < 10 ? "0" + (dt.getSeconds().toString()) : dt.getSeconds().toString();
-    let tmpDateString = tmpDateString1.concat(tmpDateString2, tmpDateString3, tmpDateString4, tmpDateString5, tmpDateString6);
-
-    FileSaver.saveAs(data, fileName + "_" + tmpDateString + EXCEL_EXTENSION);
-  }
-
-
 
 }
