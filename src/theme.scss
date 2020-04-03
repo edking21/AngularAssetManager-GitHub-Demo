@@ -1,0 +1,6 @@
+$primary-dashboard-color: #111B27;
+@mixin dashboardtheme {
+    background-color: $primary-dashboard-color;
+    background-image: url("/assets/images/dashboard-bg.png");
+    color: white;
+}

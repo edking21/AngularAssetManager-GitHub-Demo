@@ -1,0 +1,92 @@
+@import "~ngx-toastr/toastr.css";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~ngx-toastr/toastr-bs4-alert";
+.k-dropdown-button>.k-button {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background: #029AD4;
+    border: none;
+}
+
+#toast-container>div {
+    color: black;
+    opacity: 1;
+}
+
+body,
+html {
+    background: #C0C0C0;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.k-checkbox-label::before {
+    background-color: grey !important;
+    border: solid 1px black !important;
+}
+
+.k-switch-label-on,
+.k-switch-label-off {
+    color: black !important;
+}
+
+.k-switch-on .k-switch-container {
+    color: #fff;
+    background-color: #ff6358;
+}
+
+.k-grid-header {
+    background-color: #283E5C;
+    background-image: url("/assets/images/dashboard-bg.png");
+    color: white;
+    border-color: #261172;
+    text-align: center;
+}
+
+th.k-header {
+    text-align: center;
+}
+
+.k-grid {
+    border-radius: 7px;
+}
+
+.k-grid-footer {
+    background: lightblue;
+}
+
+.k-grid th {
+    font-size: 16px;
+}
+
+.k-window {
+    height: auto;
+}
+
+.k-window-titlebar {
+    background: #245c81;
+    color: white;
+    text-align: center;
+}
+
+input .k-input {
+    margin-left: 0px;
+    color: black
+}
+
+.k-window-content {
+    overflow: hidden;
+    height: auto;
+}
+
+.k-window-content {
+    text-align: center;
+}
+
+tr .totalcolumn {
+    background: lightblue;
+}
