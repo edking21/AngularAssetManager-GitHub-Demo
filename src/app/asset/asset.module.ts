@@ -14,7 +14,9 @@ import { SharedModule } from '../shared/shared.module';
     ])
   ],
   declarations: [
-    AssetComponent
+        AssetComponent
+        // AssetDetailComponent,
+        // AssetEditComponent
   ]
 })
 export class AssetModule { }

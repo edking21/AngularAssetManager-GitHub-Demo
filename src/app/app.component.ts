@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { environment } from '../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "pm-root",
@@ -7,11 +8,10 @@ import { environment } from '../environments/environment';
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  userName: string;
 
-  constructor() {
+  constructor(
+    private router: Router) {
     console.log("Environment:", environment.serverPath)
-
   }
 }
 
