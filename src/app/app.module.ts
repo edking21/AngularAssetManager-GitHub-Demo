@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -14,19 +14,24 @@ import { environment } from '../environments/environment';
 
 /* Feature Modules */
 import { AssetModule } from './asset/asset.module';
-import { fromEventPattern } from 'rxjs';
+import { UserModule } from './user/user.module';
+import { MessageModule } from './messages/message.module';
 
 @NgModule({
   imports: [
     BrowserModule,
-    HttpClientModule, 
+    HttpClientModule,
     environment.production ? [] :
-    InMemoryWebApiModule.forRoot(AssetData, {
-      dataEncapsulation: false,
-      delay: 1000,
-      passThruUnknownUrl: true }),
+      InMemoryWebApiModule.forRoot(AssetData, {
+        dataEncapsulation: false,
+        delay: 1000,
+        passThruUnknownUrl: true
+      }),
+    UserModule,
     AssetModule,
-    AppRoutingModule,
+    UserModule,
+    MessageModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,

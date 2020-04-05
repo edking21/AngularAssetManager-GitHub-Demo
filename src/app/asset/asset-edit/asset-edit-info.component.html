@@ -1,0 +1,77 @@
+<div class="card-body">
+  <form novalidate
+        #assetForm="ngForm">
+    <fieldset>
+      <legend>Basic Asset Information</legend>
+
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label"
+               for="assetNameId">Asset Name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="assetNameId"
+                 type="text"
+                 placeholder="Name (required)"
+                 required
+                 minlength="3"
+                 [(ngModel)]=asset.assetName
+                 name="assetName"
+                 #assetNameVar="ngModel"
+                 [ngClass]="{'is-invalid': (assetNameVar.touched || 
+                                            assetNameVar.dirty ||
+                                            asset.id !== 0) && 
+                                            !assetNameVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="assetNameVar.errors?.required">
+              Asset name is required.
+            </span>
+            <span *ngIf="assetNameVar.errors?.minlength">
+              Asset name must be at least three characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label"
+               for="assetCodeId">Asset Code</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="assetCodeId"
+                 type="text"
+                 placeholder="Code (required)"
+                 required
+                 [(ngModel)]=asset.assetCode
+                 name="assetCode"
+                 #assetCodeVar="ngModel"
+                 [ngClass]="{'is-invalid': (assetCodeVar.touched || 
+                                            assetCodeVar.dirty ||
+                                            asset.id !== 0) &&
+                                            !assetCodeVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="assetCodeVar.errors?.required">
+              Asset code is required.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label"
+               for="descriptionId">Description</label>
+        <div class="col-md-8">
+          <textarea class="form-control"
+                    id="descriptionId"
+                    placeholder="Description"
+                    rows=3
+                    [(ngModel)]=asset.description
+                    name="description"></textarea>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<div class='alert alert-danger'
+     *ngIf='errorMessage'>{{errorMessage}}
+</div>

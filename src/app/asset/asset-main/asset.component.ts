@@ -4,7 +4,8 @@ import { Asset } from './../asset'
 import { AssetService } from './asset.service';
 
 @Component({
-  templateUrl: './asset.component.html'
+  templateUrl: './asset.component.html',
+  styleUrls: ['./asset.component.css']
 })
 export class AssetComponent implements OnInit {
   pageTitle = 'Asset List';

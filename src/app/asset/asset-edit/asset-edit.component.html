@@ -1,0 +1,102 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+
+  <div class="card-body"
+       *ngIf="asset">
+    <form novalidate
+          #assetForm="ngForm">
+
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label"
+               for="assetNameId">Asset Name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="assetNameId"
+                 type="text"
+                 placeholder="Name (required)"
+                 required
+                 minlength="3"
+                 [(ngModel)]=asset.assetName
+                 name="assetName"
+                 #assetNameVar="ngModel"
+                 [ngClass]="{'is-invalid': (assetNameVar.touched || assetNameVar.dirty) && !assetNameVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="assetNameVar.errors?.required">
+              Asset name is required.
+            </span>
+            <span *ngIf="assetNameVar.errors?.minlength">
+              Asset name must be at least three characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label"
+               for="assetCodeId">Asset Code</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="assetCodeId"
+                 type="text"
+                 placeholder="Code (required)"
+                 required
+                 [(ngModel)]=asset.assetCode
+                 name="assetCode"
+                 #assetCodeVar="ngModel"
+                 [ngClass]="{'is-invalid': (assetCodeVar.touched || assetCodeVar.dirty) && !assetCodeVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="assetCodeVar.errors?.required">
+              Asset code is required.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label"
+               for="descriptionId">Description</label>
+        <div class="col-md-8">
+          <textarea class="form-control"
+                    id="descriptionId"
+                    placeholder="Description"
+                    rows=3
+                    [(ngModel)]=asset.description
+                    name="description"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="col-md-4">
+          <button class="btn btn-primary mr-3"
+                  style="width:80px"
+                  type="button"
+                  [title]="assetForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!assetForm.valid"
+                  (click)="saveProduct()">
+            Save
+          </button>
+          <button class="btn btn-outline-secondary mr-3"
+                  style="width:80px"
+                  type="button"
+                  title="Cancel your edits"
+                  [routerLink]="['/assets2']">
+            Cancel
+          </button>
+          <button class="btn btn-outline-warning"
+                  style="width:80px"
+                  type="button"
+                  title="Delete this asset"
+                  (click)="deleteProduct()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="alert alert-danger"
+     *ngIf="errorMessage">{{errorMessage}}
+</div>

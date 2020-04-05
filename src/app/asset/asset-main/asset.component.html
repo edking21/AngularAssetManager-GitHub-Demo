@@ -1,47 +1,56 @@
 <div class="card">
-    <div class="card-header">
-      {{pageTitle}}
-    </div>
-  
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-2">Filter by:</div>
-        <div class="col-md-4">
-          <input type="text"
-                 [(ngModel)]="listFilter" />
-        </div>
-      </div>
-      <div class="row"
-           *ngIf="listFilter">
-        <div class="col-md-6">
-          <h4>Filtered by: {{listFilter}}</h4>
-        </div>
-      </div>
-  
-      <div class="table-responsive">
-        <table class="table mb-0"
-               *ngIf="assets && assets.length">
-          <thead>
-            <tr>
-              <th>Make</th>
-              <th>Model</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let asset of assets ">
-            <tr>
-              <td>{{ asset.make}}</td>
-              <td>{{ asset.model}}</td>
-              <td>{{ asset.assetStatus}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-  
-    </div>
+  <div class="card-header">
+    {{pageTitle}}
   </div>
-  
-  <div class="alert alert-danger"
-       *ngIf="errorMessage">
-    {{ errorMessage }}
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">Filter by:</div>
+      <div class="col-md-4">
+        <input type="text" [(ngModel)]="listFilter" />
+      </div>
+    </div>
+    <div class="row" *ngIf="listFilter">
+      <div class="col-md-6">
+        <h4>Filtered by: {{listFilter}}</h4>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table mb-0" *ngIf="assets && assets.length">
+        <thead>
+          <tr>
+            <th>Asset</th>
+            <th>Code</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let asset of assets ">
+          <tr>
+            <td>
+              <a [routerLink]="['/assets2', asset.id]">
+                {{ asset.assetName}}
+              </a>
+            </td>
+            <td>{{ asset.assetCode}}</td>
+            <td>{{ asset.make}}</td>
+            <td>{{ asset.model}}</td>
+            <td>{{ asset.assetStatus}}</td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm" [routerLink]="['/assets2', asset.id, 'edit']">
+                edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
+</div>
+
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
