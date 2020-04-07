@@ -61,7 +61,7 @@ export class AssetData implements InMemoryDbService {
         assetName: "Motherboard",
         assetCode: "LLZ-344",
         location: 'St Louis',
-        make: 'Gigabit',
+        make: 'Gigabyte',
         model: 'Z68C-UD3H-B3',
         description: 'With Touch BIOS',
         assetStatus: 'CheckedIn'

@@ -19,18 +19,19 @@ export class AssetEditComponent implements OnInit {
   constructor(private assetService: AssetService,
               private messageService: MessageService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) { 
+              }
 
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params => {
-        const id = +params.get('id');
-        this.getAsset(id);
+         const id = +params.get('id');
+         this.getAsset(id);
+
       }
     )
-  }
-
+}
 
   getAsset(id: number): void {
     this.assetService.getAsset(id).subscribe({

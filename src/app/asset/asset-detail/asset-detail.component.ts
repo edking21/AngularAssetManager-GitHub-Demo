@@ -15,12 +15,16 @@ export class AssetDetailComponent implements OnInit{
 
   constructor(
     private assetService: AssetService,
-    private route: ActivatedRoute ) {}
+    private route: ActivatedRoute 
+    ) {}
     
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id');  //plus will cast to a number
+    // Plus sign will cast to a number.
+    // This method is prefered over getAsset (see below) which 
+    // goes back to the server to get the data.
+    // Note this uses an ActivatedRoute.Snapshot
+    const id = +this.route.snapshot.paramMap.get('id');  
     this.getAsset(id);
-
   }
 
   getAsset(id: number) {

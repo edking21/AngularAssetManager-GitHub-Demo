@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Asset } from './../asset'
-import { AssetService } from './asset.service';
+import { AssetService } from '../../asset/asset.service';
 
 @Component({
   templateUrl: './asset.component.html',
@@ -31,6 +31,7 @@ export class AssetComponent implements OnInit {
 
   ngOnInit() {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
+    
     this.assetService.getAssets().subscribe({
       next: assets => {
         this.assets = assets;
@@ -44,7 +45,7 @@ export class AssetComponent implements OnInit {
   performFilter(filterBy: string): Asset[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.assets.filter((asset: Asset) =>
-      asset.make.toLocaleLowerCase().indexOf(filterBy) !== -1);
+      asset.assetName.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
   onAdd(): void {

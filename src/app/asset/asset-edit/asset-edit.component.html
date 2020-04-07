@@ -74,7 +74,7 @@
                   type="button"
                   [title]="assetForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
                   [disabled]="!assetForm.valid"
-                  (click)="saveProduct()">
+                  (click)="saveAsset()">
             Save
           </button>
           <button class="btn btn-outline-secondary mr-3"
@@ -88,7 +88,7 @@
                   style="width:80px"
                   type="button"
                   title="Delete this asset"
-                  (click)="deleteProduct()">
+                  (click)="deleteAsset()">
             Delete
           </button>
         </div>

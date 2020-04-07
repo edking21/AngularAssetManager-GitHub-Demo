@@ -17,7 +17,7 @@ export class AssetService {
   getAssets(): Observable<Asset[]> {
     return this.http.get<Asset[]>(this.assetsUrl)
       .pipe(
-        tap(data => console.log(JSON.stringify(data))),
+        // tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
