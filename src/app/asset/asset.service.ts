@@ -29,7 +29,7 @@ export class AssetService {
     const url = `${this.assetsUrl}/${id}`;
     return this.http.get<Asset>(url)
       .pipe(
-        tap(data => console.log('getAsset: ' + JSON.stringify(data))),
+        // tap(data => console.log('getAsset: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
@@ -88,6 +88,7 @@ export class AssetService {
       id: 0,
       assetName: null,
       assetCode: null,
+      category: null,
       location: null,
       make: null,
       model: null,

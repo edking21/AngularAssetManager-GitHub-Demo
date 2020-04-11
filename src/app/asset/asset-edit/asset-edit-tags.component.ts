@@ -6,14 +6,17 @@ import { Asset } from '../asset';
 @Component({
   templateUrl: './asset-edit-tags.component.html'
 })
-export class ProductEditTagsComponent implements OnInit {
+export class AssetEditTagsComponent implements OnInit {
   errorMessage: string;
   newTags = '';
-  asset = { id: 1, category: 'test', tags: ['test'] };
+  asset: Asset;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.parent.data.subscribe(data => {
+      this.asset = data['resolvedData'].asset;
+    })
   }
 
   // Add the defined tags

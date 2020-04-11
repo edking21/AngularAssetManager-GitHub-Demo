@@ -10,7 +10,7 @@ import { AssetService } from '../../asset/asset.service';
 export class AssetComponent implements OnInit {
   pageTitle = 'Asset List';
   errorMessage = '';
-  categories;
+  categories: any;
 
   _listFilter = '';
   get listFilter(): string {
@@ -23,11 +23,16 @@ export class AssetComponent implements OnInit {
 
   filteredAssets: Asset[] = [];
   assets: Asset[] = [];
+  asset: Asset;
 
   constructor(
     private assetService: AssetService,
     private route: ActivatedRoute
-  ) { }
+  ) { 
+    console.log(this.route.snapshot.queryParamMap.get('filterBy'));
+    this.asset = this.route.snapshot.data['asset'];
+    // this.route.data.subscribe(data => this.asset = data['asset'])
+  }
 
   ngOnInit() {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';

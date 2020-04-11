@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { MessageService } from '../../messages/message.service';
 
-import { Asset } from '../asset';
+import { Asset, AssetResolved } from '../asset';
 import { AssetService } from '../asset.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -15,29 +15,19 @@ export class AssetEditComponent implements OnInit {
   errorMessage: string;
 
   asset: Asset;
+  private dataIsValid: { [key: string]: boolean } = {};
 
   constructor(private assetService: AssetService,
-              private messageService: MessageService,
-              private route: ActivatedRoute,
-              private router: Router) { 
-              }
-
+    private messageService: MessageService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(
-      params => {
-         const id = +params.get('id');
-         this.getAsset(id);
-
-      }
-    )
-}
-
-  getAsset(id: number): void {
-    this.assetService.getAsset(id).subscribe({
-      next: asset => this.onAssetRetrieved(asset),
-      error: err => this.errorMessage = err
-    });
+    this.route.data.subscribe(data => {
+      const resolvedData: AssetResolved = data['resolvedData'];
+      this.errorMessage = resolvedData.error;
+      this.onAssetRetrieved(resolvedData.asset);
+    })
   }
 
   onAssetRetrieved(asset: Asset): void {
@@ -69,7 +59,7 @@ export class AssetEditComponent implements OnInit {
   }
 
   saveAsset(): void {
-    if (true === true) {
+    if (this.isValid()) {
       if (this.asset.id === 0) {
         this.assetService.createAsset(this.asset).subscribe({
           next: () => this.onSaveComplete(`The new ${this.asset.assetName} was saved`),
@@ -93,5 +83,38 @@ export class AssetEditComponent implements OnInit {
 
     // Navigate back to the asset list
     this.router.navigate(['/assets2']);
+  }
+
+  isValid(path?: string): boolean {
+    this.validate();
+    if (path) {
+      return this.dataIsValid[path];
+    }
+    return (this.dataIsValid &&
+      Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true)
+    );
+  }
+
+  validate(): void {
+    // Clear the validation object
+    this.dataIsValid = {};
+
+    // 'info' tab
+    if (this.asset.assetName &&
+      this.asset.assetName.length >= 3 &&
+      this.asset.assetCode) {
+      this.dataIsValid['info'] = true;
+    } else {
+      this.dataIsValid['info'] = false;
+    }
+
+    // 'tags' tab
+    if (this.asset.category &&
+      this.asset.category.length >= 3) {
+      this.dataIsValid['tags'] = true;
+    } else {
+      this.dataIsValid['tags'] = false;
+    }
+
   }
 }

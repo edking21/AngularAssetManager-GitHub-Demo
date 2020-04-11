@@ -1,6 +1,6 @@
 import { Component , OnInit } from '@angular/core';
 
-import { Asset } from './../asset';
+import { Asset, AssetResolved } from './../asset';
 import { AssetService } from './../asset.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,26 +14,15 @@ export class AssetDetailComponent implements OnInit{
   errorMessage: string;
 
   constructor(
-    private assetService: AssetService,
     private route: ActivatedRoute 
     ) {}
     
   ngOnInit(): void {
-    // Plus sign will cast to a number.
-    // This method is prefered over getAsset (see below) which 
-    // goes back to the server to get the data.
-    // Note this uses an ActivatedRoute.Snapshot
-    const id = +this.route.snapshot.paramMap.get('id');  
-    this.getAsset(id);
+    const resolvedData: AssetResolved = this.route.snapshot.data['resolvedData'];
+    this.errorMessage = resolvedData.error;
+    this.onAssetRetrieved(resolvedData.asset);
   }
-
-  getAsset(id: number) {
-    this.assetService.getAsset(id).subscribe({
-      next: asset => this.onAssetRetrieved(asset),
-      error: err => this.errorMessage = err
-    });
-  }
-
+  
   onAssetRetrieved(asset: Asset): void {
     this.asset = asset;
 
