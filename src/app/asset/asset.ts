@@ -5,6 +5,7 @@ export interface Asset {
   assetCode: string;
   category: string;
   location?: string;
+  imageUrl:string;
   make?: string;
   model?: string;
   tags?: string[];

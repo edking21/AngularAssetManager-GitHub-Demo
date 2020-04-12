@@ -10,7 +10,10 @@ import { AssetService } from '../../asset/asset.service';
 export class AssetComponent implements OnInit {
   pageTitle = 'Asset List';
   errorMessage = '';
+  imageWidth = 50;
+  imageMargin = 2;
   categories: any;
+  showImage = false;
 
   _listFilter = '';
   get listFilter(): string {
@@ -29,13 +32,14 @@ export class AssetComponent implements OnInit {
     private assetService: AssetService,
     private route: ActivatedRoute
   ) { 
-    console.log(this.route.snapshot.queryParamMap.get('filterBy'));
+    // console.log(this.route.snapshot.queryParamMap.get('filterBy'));
     this.asset = this.route.snapshot.data['asset'];
     // this.route.data.subscribe(data => this.asset = data['asset'])
   }
 
   ngOnInit() {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
+    this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';
     
     this.assetService.getAssets().subscribe({
       next: assets => {
@@ -59,5 +63,8 @@ export class AssetComponent implements OnInit {
 
   onSelected(categoryId: string): void {
     console.log('Not yet implemented');
+  }
+  toggleImage(): void {
+    this.showImage = !this.showImage;
   }
 }

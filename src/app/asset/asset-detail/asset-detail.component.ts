@@ -14,8 +14,7 @@ export class AssetDetailComponent implements OnInit{
   errorMessage: string;
 
   constructor(
-    private route: ActivatedRoute 
-    ) {}
+    private route: ActivatedRoute ) {}
     
   ngOnInit(): void {
     const resolvedData: AssetResolved = this.route.snapshot.data['resolvedData'];

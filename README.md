@@ -6,6 +6,12 @@ It intercepts Angular `Http` and `HttpClient` requests that would otherwise go t
 
 Uses a reactive approach by issuing the Common Pattern with an Async Pipe to populate the main grid of assets.
 
+## Animations
+
+* Shows transition between any two states
+
+* Slides element horizontally
+
 ## Async Pipe
 
 * Subscribes to the observable when the component is initialized.

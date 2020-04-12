@@ -37,14 +37,21 @@
           <div class="col-md-6">{{asset.assetStatus}}</div>
         </div>
         <div class="row">
+          <div class="col-md-3">Category:</div>
+          <div class="col-md-6">{{asset.category}}</div>
+        </div>
+        <div class="row">
           <div class="col-md-3">Tags:</div>
           <div class="col-md-6">{{asset.tags}}</div>
         </div>
       </div>
 
-      <div class="col-md-4" *ngIf="asset.imageUrl">
-        <img class="center-block img-responsive" [style.height.px]="150" [style.margin.px]="2" [src]="asset.imageUrl"
-          [title]="asset.assetName">
+      <div class="col-md-3" *ngIf="asset.imageUrl">
+        <img class="center-block img-responsive" 
+            [style.height.px]="150" 
+            [style.margin.px]="2" 
+            [src]="asset.imageUrl"
+            [title]="asset.assetName">
       </div>
     </div>
 

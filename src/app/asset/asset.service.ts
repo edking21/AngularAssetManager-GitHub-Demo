@@ -93,7 +93,8 @@ export class AssetService {
       make: null,
       model: null,
       description: null,
-      assetStatus: null
+      assetStatus: null,
+      imageUrl: null
     };
   }
 }

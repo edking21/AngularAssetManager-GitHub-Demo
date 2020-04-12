@@ -7,8 +7,7 @@
     <div class="row">
       <div class="col-md-2">Filter by:</div>
       <div class="col-md-4">
-        <input type="text" 
-              [(ngModel)]="listFilter" />
+        <input type="text" [(ngModel)]="listFilter" />
       </div>
     </div>
     <div class="row" *ngIf="listFilter">
@@ -21,6 +20,11 @@
       <table class="table mb-0" *ngIf="assets && assets.length">
         <thead>
           <tr>
+            <th>
+            <button class="btn btn-outline-primary btn-sm" (click)="toggleImage()">
+              {{showImage ? "Hide" : "Show"}} Image
+            </button>
+            </th>
             <th>Asset</th>
             <th>Code</th>
             <th>Make</th>
@@ -31,8 +35,15 @@
         <tbody *ngFor="let asset of filteredAssets ">
           <tr>
             <td>
+              <img *ngIf="showImage && asset.imageUrl"
+                   [src]="asset.imageUrl"
+                   [title]="asset.assetName"
+                   [style.width.px]="imageWidth"
+                   [style.margin.px]="imageMargin">
+            </td>
+            <td>
               <a [routerLink]="['/assets2', asset.id]" 
-              [queryParams]="{ filterBy: listFilter}">
+              [queryParams]="{ filterBy: listFilter, showImage: showImage}">
                 {{ asset.assetName}}
               </a>
             </td>
