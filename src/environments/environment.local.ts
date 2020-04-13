@@ -6,11 +6,12 @@
 export const environment = {
   production: true,
   envName: 'local',
-  serverPath: 'http://localhost:57276/',
+  serverPath: '',
   assetUrl: 'api/asset/assets',
   marketUrl: 'api/asset/getMarket',
   tokenIssuerClient: "http://localhost:57276/",
   tokenIssuerPath: "http://localhost:57276/"
+  // serverPath: 'http://localhost:57276/',
   // tokenIssuerClient: "https://devutportal.utilimap.com",
   // tokenIssuerPath: "https://wadevutportal.utilimap.com"
 };

@@ -24,11 +24,7 @@ import { MessageModule } from './messages/message.module';
     BrowserAnimationsModule,
     HttpClientModule,
     environment.production ? [] :
-      InMemoryWebApiModule.forRoot(AssetData, {
-        dataEncapsulation: false,
-        delay: 1000,
-        passThruUnknownUrl: true
-      }),
+      InMemoryWebApiModule.forRoot(AssetData, {delay: 1000 }),
     UserModule,
     AssetModule,
     UserModule,

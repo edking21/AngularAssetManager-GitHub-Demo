@@ -6,6 +6,7 @@
     "ng": "ng",
     "mem": "ng s -o --port 4204",
     "local": "ng s -c local --port 4202",
+    "prod": "ng s -o --prod --port 4204",
     "dev": "ng s -c dev",
     "dev-build": "ng b -c dev",
     "test": "ng test",
