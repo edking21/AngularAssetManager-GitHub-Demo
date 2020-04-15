@@ -8,6 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { AssetResolver } from './asset-main/asset-resolver.service';
 import { AssetEditInfoComponent } from './asset-edit/asset-edit-info.component';
 import { AssetEditTagsComponent } from './asset-edit/asset-edit-tags.component';
+import { AuthGuard } from './../user/auth.guard';
+import { AssetEditGuard } from './asset-edit/asset-edit.guard';
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { AssetEditTagsComponent } from './asset-edit/asset-edit-tags.component';
     RouterModule.forChild([
       {
         path: 'assets2',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '', component: AssetComponent
@@ -27,6 +30,7 @@ import { AssetEditTagsComponent } from './asset-edit/asset-edit-tags.component';
           {
             path: ':id/edit',
             component: AssetEditComponent,
+            canDeactivate: [AssetEditGuard],
             resolve: { resolvedData: AssetResolver },
             children: [
               {path: '',redirectTo: 'info',pathMatch: 'full'},

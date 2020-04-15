@@ -12,17 +12,21 @@ export class LoginComponent {
   pageTitle = 'Log In';
 
   constructor(private authService: AuthService,
-              private router: Router) { }
+    private router: Router) { }
 
   login(loginForm: NgForm) {
     if (loginForm && loginForm.valid) {
       const userName = loginForm.form.value.userName;
-      // const password = 'test';
       const password = loginForm.form.value.password;
       this.authService.login(userName, password);
 
       // Navigate to the Asset List page after log in.
-      this.router.navigate(['/assets2'])
+      if (this.authService.redirectUrl) {
+        this.router.navigateByUrl(this.authService.redirectUrl);
+      }
+      else {
+        this.router.navigate(['/assets2']);
+      }
     } else {
       this.errorMessage = 'Please enter a user name and password.';
     }

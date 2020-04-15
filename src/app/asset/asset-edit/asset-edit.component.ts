@@ -14,8 +14,25 @@ export class AssetEditComponent implements OnInit {
   pageTitle = 'Asset Edit';
   errorMessage: string;
 
-  asset: Asset;
+  get isDirty(): boolean {
+    // this will fail if the two objects are not in the same order
+    return JSON.stringify(this.originalAsset) !== JSON.stringify(this.currentAsset);
+  }
+
   private dataIsValid: { [key: string]: boolean } = {};
+
+  private currentAsset: Asset;
+  private originalAsset: Asset;
+
+  get asset(): Asset {
+    return this.currentAsset;
+  }
+
+  set asset(value: Asset) {
+    this.currentAsset = value;
+    //clone the object to retain a copy - using the spread operator
+    this.originalAsset = {...value};
+  }
 
   constructor(private assetService: AssetService,
     private messageService: MessageService,
@@ -58,6 +75,12 @@ export class AssetEditComponent implements OnInit {
     }
   }
 
+  reset(): void {
+    this.dataIsValid = null;
+    this.currentAsset = null;
+    this.originalAsset = null;
+  }
+
   saveAsset(): void {
     if (this.isValid()) {
       if (this.asset.id === 0) {
@@ -80,7 +103,7 @@ export class AssetEditComponent implements OnInit {
     if (message) {
       this.messageService.addMessage(message);
     }
-
+    this.reset();
     // Navigate back to the asset list
     this.router.navigate(['/assets2']);
   }
@@ -115,6 +138,5 @@ export class AssetEditComponent implements OnInit {
     } else {
       this.dataIsValid['tags'] = false;
     }
-
   }
 }
