@@ -59,7 +59,11 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 * Preload strategies
 
 ```ts
-  test
+  All - all features are preloaded
+  None - no features are preloaded
+  Custom - select features are preloaded
+    Preload more commonly used features
+    Lazy load less commonly used features
 ```
 
 ## Use cases
