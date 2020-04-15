@@ -14,7 +14,6 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { environment } from '../environments/environment';
 
 /* Feature Modules */
-import { AssetModule } from './asset/asset.module';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
 
@@ -26,7 +25,6 @@ import { MessageModule } from './messages/message.module';
     environment.production ? [] :
       InMemoryWebApiModule.forRoot(AssetData, {delay: 1000 }),
     UserModule,
-    AssetModule,
     UserModule,
     MessageModule,
     AppRoutingModule
