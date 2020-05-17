@@ -6,6 +6,14 @@ It intercepts Angular `Http` and `HttpClient` requests that would otherwise go t
 
 Uses a reactive approach by issuing the Common Pattern with an Async Pipe to populate the main grid of assets.
 
+## Mean Stack
+
+* Uses the Mean Stack to allow CRUD access to a MongoDB Atlas server.
+  M - MongoDB
+  E - Express
+  A - Angular
+  N - Node
+
 ## Animations
 
 * Shows transition between any two states

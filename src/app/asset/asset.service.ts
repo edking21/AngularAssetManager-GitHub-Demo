@@ -11,6 +11,7 @@ import { Asset } from './asset';
 })
 export class AssetService {
   private assetsUrl = 'api/assets';
+  private api = 'https://connecttomongoatlas--vladimirioan82.repl.co/data';
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +19,13 @@ export class AssetService {
     return this.http.get<Asset[]>(this.assetsUrl)
       .pipe(
         // tap(data => console.log(JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+  getAssets2(): Observable<Asset[]> {
+    return this.http.get<any>(this.api)
+      .pipe(
+        tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
