@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "inMemory": "ng serve",
+    "mongoDb": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,6 +23,7 @@
     "@angular/router": "~9.1.7",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
+    "mongoose": "^5.9.15",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

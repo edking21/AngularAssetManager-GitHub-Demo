@@ -1,34 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-
 import { Asset } from './asset';
+import { Employee} from './employee';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssetService {
   private assetsUrl = 'api/assets';
-  private api = 'https://connecttomongoatlas--vladimirioan82.repl.co/data';
 
   constructor(private http: HttpClient) { }
 
-  getAssets(): Observable<Asset[]> {
+  url : string  = "/api/v1/employees";
+
+  getAssets() {
+    return this.http.get<Employee[]>(this.url);
+  }
+
+  getAssets5(): Observable<Asset[]> {
+    return this.http.get<Asset[]>(this.url)
+  }
+
+    getAssets4(): Observable<Asset[]> {
     return this.http.get<Asset[]>(this.assetsUrl)
       .pipe(
         // tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
-  getAssets2(): Observable<Asset[]> {
-    return this.http.get<any>(this.api)
-      .pipe(
-        tap(data => console.log(JSON.stringify(data))),
-        catchError(this.handleError)
-      );
-  }
+  // getAssets2(): Observable<Asset[]> {
+  //   return this.http.get<any>(this.api)
+  //     .pipe(
+  //       tap(data => console.log(JSON.stringify(data))),
+  //       catchError(this.handleError)
+  //     );
+  // }
 
   getAsset(id: number): Observable<Asset> {
     if (id === 0) {

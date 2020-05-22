@@ -6,17 +6,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "mem",
+            "name": "inMemory",
             "request": "launch",
-            "type": "pwa-chrome",
-            "url": "http://localhost:4204",
+            "type": "chrome",
+            "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
         },
         {
+            "name": "mongoDb",
             "type": "chrome",
             "request": "launch",
-            "name": "localhost",
-            "url": "http://localhost:4202",
+            "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
         }
     ]

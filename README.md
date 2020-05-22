@@ -31,13 +31,13 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 
 ## In Memory Data Store
 
-* During early development optionally calls the in Memory Data Store when the MongoDB Atlas RESTfull API is not available.
+* During early development optionally calls the In Memory Data Store when the MongoDB Atlas RESTfull API is not available.
 * Changes between In Memory and REST with a single npm command.
 
 ```ts
   // develop the In Memory or RESTfull backend data provider.
-  npm run local           // Uses In Memory Data Store
-  npm run mem             // Uses proxy to MongoDB Atlas Database to resolve CORS requirement
+  npm run inMemory           // Uses In Memory Data Store
+  npm run mondoDb             // Uses proxy to MongoDB Atlas Database to resolve CORS requirement
 ```
 
 ## Routing
