@@ -3,21 +3,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Asset } from './asset';
-import { Employee} from './employee';
-
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AssetService {
   private assetsUrl = 'api/assets';
 
   constructor(private http: HttpClient) { }
 
-  url : string  = "/api/v1/employees";
+  url : string  = "/api/v1/assets";
 
-  getAssets() {
-    return this.http.get<Employee[]>(this.url);
+  getAssets(): Observable<Asset[]> {
+    return this.http.get<Asset[]>(this.url)
+      .pipe(
+        // tap(data => console.log(JSON.stringify(data))),
+        catchError(this.handleError)
+      );
   }
 
   getAssets5(): Observable<Asset[]> {

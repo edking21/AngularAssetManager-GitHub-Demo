@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectionStrategy, ɵpatchComponentDefWithScop
 import { ActivatedRoute } from '@angular/router';
 import { Asset } from './../asset'
 import { AssetService } from '../../asset/asset.service';
-import { Employee } from '../Employee';
 
 @Component({
   templateUrl: './asset.component.html',
@@ -15,7 +14,6 @@ export class AssetComponent implements OnInit {
   imageMargin = 2;
   categories: any;
   showImage = false;
-  employees: Employee[] = [];
 
   _listFilter = '';
   get listFilter(): string {
@@ -36,33 +34,20 @@ export class AssetComponent implements OnInit {
   ) { 
     // console.log(this.route.snapshot.queryParamMap.get('filterBy'));
     this.asset = this.route.snapshot.data['asset'];
-    // this.route.data.subscribe(data => this.asset = data['asset'])
+    this.route.data.subscribe(data => this.asset = data['asset'])
   }
 
   ngOnInit() {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
     this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';
 
-    this.assetService.getAssets().subscribe
-    (
-      (response) =>
-      {
-        this.employees = response;
-        console.log(this.employees);
-
+    this.assetService.getAssets().subscribe({
+      next: assets => {
+        this.assets = assets;
+        this.filteredAssets = this.performFilter(this.listFilter);
       },
-      (error) =>
-      {
-        console.log('Error Ocurred: ', error);
-      }
-    )
-    // this.assetService.getAssets().subscribe({
-    //   next: assets => {
-    //     this.assets = assets;
-    //     this.filteredAssets = this.performFilter(this.listFilter);
-    //   },
-    //   error: err => this.errorMessage = err
-    // })
+      error: err => this.errorMessage = err
+    })
 
   }
   
