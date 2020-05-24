@@ -6,10 +6,15 @@ const FakeDb = require('./fake-db-Asset');
 
 const assetRoutes = require('./routes/assets');
 
-mongoose.connect(config.DB_URI , { useNewUrlParser : true }).then(() => {
-    const fakeDb = new FakeDb();
-    fakeDb.seedDb();
-});
+mongoose.connect(config.DB_URI , { 
+    useNewUrlParser : true ,
+    useUnifiedTopology: true
+})
+//     .then(() => {
+//     const fakeDb = new FakeDb();
+//     fakeDb.seedDb();
+// })
+;
 
 const app = express();
 
