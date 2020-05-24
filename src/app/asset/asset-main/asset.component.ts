@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ɵpatchComponentDefWithScope } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Asset } from './../asset'
 import { AssetService } from '../../asset/asset.service';
@@ -34,13 +34,13 @@ export class AssetComponent implements OnInit {
   ) { 
     // console.log(this.route.snapshot.queryParamMap.get('filterBy'));
     this.asset = this.route.snapshot.data['asset'];
-    // this.route.data.subscribe(data => this.asset = data['asset'])
+    this.route.data.subscribe(data => this.asset = data['asset'])
   }
 
   ngOnInit() {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
     this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';
-    
+
     this.assetService.getAssets().subscribe({
       next: assets => {
         this.assets = assets;

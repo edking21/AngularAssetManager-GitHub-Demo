@@ -12,6 +12,10 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 
 * MEAN is used to allow CRUD access to test data in a MongoDB database.
 
+## CORS
+
+* Cross Origin resource sharing (CORS) is resolved by setting up a proxy between the UI running on port 4200 and the database server running on port 3001.
+
 ## Animations
 
 * Shows transition between any two states
@@ -27,13 +31,13 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 
 ## In Memory Data Store
 
-* Optionally calls the in Memory DB when the RESTfull API is not available.
-* Change between In Memory and REST with a single npm command.
+* During early development optionally calls the In Memory Data Store when the MongoDB Atlas RESTfull API is not available.
+* Changes between In Memory and REST with a single npm command.
 
 ```ts
-  // develop the In Memory or REST backend data provider.
-  npm run local           // Uses REST and SQL Server for backend data
-  npm run mem             // Uses In Memory Database
+  // develop the In Memory or RESTfull backend data provider.
+  npm run inMemory           // Uses In Memory Data Store
+  npm run mondoDb             // Uses proxy to MongoDB Atlas Database to resolve CORS requirement
 ```
 
 ## Routing
