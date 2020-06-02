@@ -1,6 +1,6 @@
 const Employee = require('./models/employee');
 
-class FakeDbEmployee
+class FakeDb
 {
     constructor()
     {

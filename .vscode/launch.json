@@ -6,6 +6,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "server",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:3001/api/v1/assets",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
             "name": "inMemory",
             "request": "launch",
             "type": "chrome",

@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 const employeeSchema = new Schema({
+    id: { type: Number, required : true},
     name : { type : String, required : true, max : [127, "Max Length is 127 characters"] },
     age : { type : Number, required : true},
     salary : Number,

@@ -25,7 +25,8 @@ export class AssetComponent implements OnInit {
   }
 
   filteredAssets: Asset[] = [];
-  assets: Asset[] = [];
+  assets: any = [];
+//  assets: Asset[] = [];
   asset: Asset;
 
   constructor(

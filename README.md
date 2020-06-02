@@ -6,11 +6,15 @@ It intercepts Angular `Http` and `HttpClient` requests that would otherwise go t
 
 Uses a reactive approach by issuing the Common Pattern with an Async Pipe to populate the main grid of assets.
 
-## MEAN
+## MEAN Stack Project
 
-* MEAN is a (MongoDB, Express.js, AngularJS (or Angular), and Node.js) open-source JavaScript software stack for building dynamic web sites and web applications.  
+* MEAN stack project is a (MongoDB, Express.js, AngularJS (or Angular), and Node.js) open-source JavaScript software stack for building dynamic web sites and web applications.  
 
-* MEAN is used to allow CRUD access to test data in a MongoDB database.
+* MEAN Stack Project creates RESTful APIs with Express js Routes in a backend Node server.
+
+* MEAN Stack Project adds assets using MEAN Stack REST APIs with Angular Material
+
+* MEAN Stack Project uses Angular Reactive form to ass asset to the database.
 
 ## CORS
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Asset } from './asset';
@@ -9,33 +9,32 @@ import { Asset } from './asset';
 })
 
 export class AssetService {
-  private assetsUrl = 'api/assets';
+  private assetsUrl = '/api/v1/assets';
+  private endpoint: string = "http://localhost:8000/api";
+  private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
 
-  url : string  = "/api/v1/assets";
-
-  getAssets(): Observable<Asset[]> {
-    return this.http.get<Asset[]>(this.url)
+  getAssets() {
+    return this.http.get(`${this.endpoint}`)
       .pipe(
-        // tap(data => console.log(JSON.stringify(data))),
+        tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
 
-  getAssets5(): Observable<Asset[]> {
-    return this.http.get<Asset[]>(this.url)
-  }
-
-    getAssets4(): Observable<Asset[]> {
-    return this.http.get<Asset[]>(this.assetsUrl)
-      .pipe(
-        // tap(data => console.log(JSON.stringify(data))),
-        catchError(this.handleError)
-      );
-  }
-  // getAssets2(): Observable<Asset[]> {
-  //   return this.http.get<any>(this.api)
+  // getAsset(id): Observable<any> {
+  //   let API_URL = `${this.endpoint}/read-asset/${id}`;
+  //   return this.http.get(API_URL, { headers: this.headers })
+  //     .pipe(
+  //       map((res: Response) => {
+  //         return res || {}
+  //       }),
+  //       catchError(this.errorMgmt)
+  //     )
+  // }
+  // getAssets(): Observable<Asset[]> {
+  //   return this.http.get<Asset[]>(this.assetsUrl)
   //     .pipe(
   //       tap(data => console.log(JSON.stringify(data))),
   //       catchError(this.handleError)
@@ -53,6 +52,19 @@ export class AssetService {
         catchError(this.handleError)
       );
   }
+
+
+  // getAsset(id: number): Observable<Asset> {
+  //   if (id === 0) {
+  //     return of(this.initializeAsset());
+  //   }
+  //   const url = `${this.assetsUrl}/${id}`;
+  //   return this.http.get<Asset>(url)
+  //     .pipe(
+  //       // tap(data => console.log('getAsset: ' + JSON.stringify(data))),
+  //       catchError(this.handleError)
+  //     );
+  // }
 
   createAsset(asset: Asset): Observable<Asset> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -116,5 +128,20 @@ export class AssetService {
       assetStatus: null,
       imageUrl: null
     };
+  }
+
+
+  // Error handling 
+  errorMgmt(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
 }
