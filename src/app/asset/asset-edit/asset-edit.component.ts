@@ -36,11 +36,14 @@ export class AssetEditComponent implements OnInit {
 
   constructor(private assetService: AssetService,
     private messageService: MessageService,
-    private route: ActivatedRoute,
-    private router: Router) { }
+    private actRoute: ActivatedRoute,
+    private router: Router) { 
+      var id = this.actRoute.snapshot.paramMap.get('id');
+      console.log('id: ' , id);
+    }
 
   ngOnInit(): void {
-    this.route.data.subscribe(data => {
+    this.actRoute.data.subscribe(data => {
       const resolvedData: AssetResolved = data['resolvedData'];
       this.errorMessage = resolvedData.error;
       this.onAssetRetrieved(resolvedData.asset);

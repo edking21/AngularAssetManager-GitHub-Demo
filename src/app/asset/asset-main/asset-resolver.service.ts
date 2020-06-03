@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, 
+  ActivatedRoute } from '@angular/router';
 import { AssetResolved } from '../asset';
 import { Observable, of } from 'rxjs';
 import { AssetService } from '../asset.service';
@@ -9,11 +10,25 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AssetResolver implements Resolve<AssetResolved> {
+  constructor(
+    private assetService: AssetService,
+    private actRoute: ActivatedRoute
+    ) { }
 
-  constructor(private assetService: AssetService) { }
+    resolve(
+      route: ActivatedRouteSnapshot,
+      state: RouterStateSnapshot
+      ): Observable<any>|Promise<any>|any {
+        return this.assetService.getAsset(route.paramMap.get('id'));
+      }
+    }
 
-  resolve(route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<AssetResolved> {
+
+
+  resolve2(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+    ): Observable<AssetResolved> {
     const id = route.paramMap.get('id');
     if (isNaN(+id)) {
       const message = 'Asset is was not a number: $(id)';

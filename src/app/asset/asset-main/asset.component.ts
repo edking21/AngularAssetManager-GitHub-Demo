@@ -31,16 +31,16 @@ export class AssetComponent implements OnInit {
 
   constructor(
     private assetService: AssetService,
-    private route: ActivatedRoute
+    private actRoute: ActivatedRoute
   ) { 
-    // console.log(this.route.snapshot.queryParamMap.get('filterBy'));
-    this.asset = this.route.snapshot.data['asset'];
-    this.route.data.subscribe(data => this.asset = data['asset'])
+    // console.log(this.actRoute.snapshot.queryParamMap.get('filterBy'));
+    this.asset = this.actRoute.snapshot.data['asset'];
+    this.actRoute.data.subscribe(data => this.asset = data['asset'])
   }
 
   ngOnInit() {
-    this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
-    this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';
+    this.listFilter = this.actRoute.snapshot.queryParamMap.get('filterBy') || '';
+    this.showImage = this.actRoute.snapshot.queryParamMap.get('showImage') === 'true';
 
     this.assetService.getAssets().subscribe({
       next: assets => {

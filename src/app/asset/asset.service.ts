@@ -23,35 +23,28 @@ export class AssetService {
       );
   }
 
-  // getAsset(id): Observable<any> {
-  //   let API_URL = `${this.endpoint}/read-asset/${id}`;
-  //   return this.http.get(API_URL, { headers: this.headers })
+  getAsset(id: number): Observable<any> {
+    let API_URL = `${this.endpoint}/read-asset/${id}`;
+    return this.http.get(API_URL, { headers: this.headers })
+      .pipe(
+        map((res: Response) => {
+          return res || {}
+        }),
+        catchError(this.errorMgmt)
+      )
+  }
+
+  // getAsset(id: number): Observable<Asset> {
+  //   if (id === 0) {
+  //     return of(this.initializeAsset());
+  //   }
+  //   const url = `${this.assetsUrl}/${id}`;
+  //   return this.http.get<Asset>(url)
   //     .pipe(
-  //       map((res: Response) => {
-  //         return res || {}
-  //       }),
-  //       catchError(this.errorMgmt)
-  //     )
-  // }
-  // getAssets(): Observable<Asset[]> {
-  //   return this.http.get<Asset[]>(this.assetsUrl)
-  //     .pipe(
-  //       tap(data => console.log(JSON.stringify(data))),
+  //       // tap(data => console.log('getAsset: ' + JSON.stringify(data))),
   //       catchError(this.handleError)
   //     );
   // }
-
-  getAsset(id: number): Observable<Asset> {
-    if (id === 0) {
-      return of(this.initializeAsset());
-    }
-    const url = `${this.assetsUrl}/${id}`;
-    return this.http.get<Asset>(url)
-      .pipe(
-        // tap(data => console.log('getAsset: ' + JSON.stringify(data))),
-        catchError(this.handleError)
-      );
-  }
 
 
   // getAsset(id: number): Observable<Asset> {
