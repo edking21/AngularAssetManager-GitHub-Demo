@@ -1,5 +1,6 @@
 /* Defines the asset entity */
 export interface Asset {
+  _id: string;
   id: number;
   assetName: string;
   assetCode: string;

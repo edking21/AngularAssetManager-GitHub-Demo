@@ -21,9 +21,9 @@
         <thead>
           <tr>
             <th>
-            <button class="btn btn-outline-primary btn-sm" (click)="toggleImage()">
-              {{showImage ? "Hide" : "Show"}} Image
-            </button>
+              <button class="btn btn-outline-primary btn-sm" (click)="toggleImage()">
+                {{showImage ? "Hide" : "Show"}} Image
+              </button>
             </th>
             <th>Asset</th>
             <th>Code</th>
@@ -35,24 +35,22 @@
         <tbody *ngFor="let asset of filteredAssets ">
           <tr>
             <td>
-              <img *ngIf="showImage && asset.imageUrl"
-                   [src]="asset.imageUrl"
-                   [title]="asset.assetName"
-                   [style.width.px]="imageWidth"
-                   [style.margin.px]="imageMargin">
+              <img *ngIf="showImage && asset.imageUrl" [src]="asset.imageUrl" [title]="asset.assetName"
+                [style.width.px]="imageWidth" [style.margin.px]="imageMargin">
             </td>
             <td>
-              <a [routerLink]="['/assets2', asset.id]" 
-              [queryParams]="{ filterBy: listFilter, showImage: showImage}">
+              <a [routerLink]="['/assets', asset.id]" [queryParams]="{ filterBy: listFilter, showImage: showImage}">
                 {{ asset.assetName}}
               </a>
             </td>
-            <td>{{ asset.assetCode}}</td>
+            <td>{{ asset._id}}</td>
+            <td>{{ asset.id}}</td>
             <td>{{ asset.make}}</td>
             <td>{{ asset.model}}</td>
             <td>{{ asset.assetStatus}}</td>
             <td>
-              <button class="btn btn-outline-primary btn-sm" [routerLink]="['/assets2', asset.id, 'edit']">
+              <button class="btn btn-outline-primary btn-sm" 
+              [routerLink]="['/assets', asset.id, 'edit']">
                 edit
               </button>
             </td>

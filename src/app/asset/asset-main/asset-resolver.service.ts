@@ -15,17 +15,13 @@ export class AssetResolver implements Resolve<AssetResolved> {
     private actRoute: ActivatedRoute
     ) { }
 
-    resolve(
-      route: ActivatedRouteSnapshot,
-      state: RouterStateSnapshot
-      ): Observable<any>|Promise<any>|any {
-        return this.assetService.getAsset(route.paramMap.get('id'));
-      }
-    }
-
-
-
-  resolve2(
+    // resolve(
+    //   route: ActivatedRouteSnapshot
+    //   ): Observable<any>|Promise<any>|any {
+    //     return this.assetService.getAsset(+route.paramMap.get('_id'));
+    //   }
+    
+  resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
     ): Observable<AssetResolved> {

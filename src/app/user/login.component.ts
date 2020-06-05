@@ -25,7 +25,7 @@ export class LoginComponent {
         this.router.navigateByUrl(this.authService.redirectUrl);
       }
       else {
-        this.router.navigate(['/assets2']);
+        this.router.navigate(['/assets']);
       }
     } else {
       this.errorMessage = 'Please enter a user name and password.';

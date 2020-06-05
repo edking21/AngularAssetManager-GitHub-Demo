@@ -13,7 +13,7 @@ import { SelectiveStrategy } from './selective-strategy.service';
             //implements lazy loading the assets module
             //assets wil not load on startup
             {
-                path: 'assets2',
+                path: 'assets',
                 canActivate: [AuthGuard],
                 data: { preload: false },  //this route will use the preload strategy
                 loadChildren: () =>

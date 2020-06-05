@@ -37,10 +37,7 @@ export class AssetEditComponent implements OnInit {
   constructor(private assetService: AssetService,
     private messageService: MessageService,
     private actRoute: ActivatedRoute,
-    private router: Router) { 
-      var id = this.actRoute.snapshot.paramMap.get('id');
-      console.log('id: ' , id);
-    }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.actRoute.data.subscribe(data => {
@@ -108,7 +105,7 @@ export class AssetEditComponent implements OnInit {
     }
     this.reset();
     // Navigate back to the asset list
-    this.router.navigate(['/assets2']);
+    this.router.navigate(['/assets']);
   }
 
   isValid(path?: string): boolean {

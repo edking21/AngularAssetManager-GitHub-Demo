@@ -110,6 +110,7 @@ export class AssetService {
   private initializeAsset(): Asset {
     // Return an initialized object
     return {
+      _id: '0',
       id: 0,
       assetName: null,
       assetCode: null,

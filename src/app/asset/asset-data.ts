@@ -7,6 +7,7 @@ export class AssetData implements InMemoryDbService {
   createDb() {
     const assets: Asset[] = [
       {
+        _id: '0',
         id: 1,
         assetName: 'Laptop',
         assetCode: "CX-235",
@@ -20,6 +21,7 @@ export class AssetData implements InMemoryDbService {
         tags: ['computer', 'laptop', 'lenova'  ]
       },
       {
+        _id: '0',
         id: 2,
         assetName: "Power Supply",
         assetCode: "CTX-999",
@@ -33,6 +35,7 @@ export class AssetData implements InMemoryDbService {
         tags: ['computer', 'desktop', 'gaming'  ]
       },
       {
+        _id: '0',
         id: 3,
         assetName: "Monitor",
         assetCode: "A7B-123",
@@ -46,6 +49,7 @@ export class AssetData implements InMemoryDbService {
         tags: ['monitor', 'acer'  ]
       },
       {
+        _id: '0',
         id: 4,
         assetName: "Camera",
         assetCode: "B7Z-634",
@@ -58,6 +62,7 @@ export class AssetData implements InMemoryDbService {
         assetStatus: 'CheckedIn'
       },
       {
+        _id: '0',
         id: 5,
         assetName: "CPU",
         assetCode: "A7Z-634",
@@ -70,6 +75,7 @@ export class AssetData implements InMemoryDbService {
         assetStatus: 'CheckedOut'
       },
       {
+        _id: '0',
         id: 6,
         assetName: "Headphones",
         assetCode: "LLZ-344",
@@ -82,6 +88,7 @@ export class AssetData implements InMemoryDbService {
         assetStatus: 'CheckedIn'
       },
       {
+        _id: '0',
         id: 7,
         assetName: "Hard Drive",
         assetCode: "ALZ-344",
@@ -94,6 +101,7 @@ export class AssetData implements InMemoryDbService {
         assetStatus: 'CheckedOut'
       },
       {
+        _id: '0',
         id: 8,
         assetName: "Mouse",
         assetCode: "MMZ-344",
