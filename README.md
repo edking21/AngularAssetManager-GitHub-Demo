@@ -2,7 +2,7 @@
 
 An in-memory web api for Angular demos and tests that emulates CRUD operations over a RESTy API.
 
-Intercepts Angular `Http` and `HttpClient` requests that would otherwise go to the remote server and redirects them to an in-memory data store that you control.
+Optionally intercepts Angular `Http` and `HttpClient` requests that would otherwise go to the remote server and redirects them to an in-memory data store that you control.
 
 Uses a reactive approach by issuing the Common Pattern with an Async Pipe to populate the main grid of assets.
 

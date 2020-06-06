@@ -11,7 +11,7 @@ import { Asset } from './asset';
 export class AssetService {
   private assetsUrl = '/api/v1/assets';
   private endpoint: string = "/api/v1/assets";
-  private endpoint2: string = "http://localhost:8000/api";
+  private endpointsave: string = "http://localhost:8000/api";
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
