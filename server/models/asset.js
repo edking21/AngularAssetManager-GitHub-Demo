@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const assetSchema = new Schema({
     id: { type: Number, required : true},
+    studentId: { type : Number},
     assetName : { type : String, required : true, max : [127, "Max Length is 127 characters"] },
     assetCode: { type : String, required : true, max : [127, "Max Length is 127 characters"] },
     category: { type : String, required : true, max : [127, "Max Length is 127 characters"] },

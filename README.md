@@ -1,8 +1,8 @@
-# Angular grid-demo-github
+# Angular Asset Manager Github Demo
 
 An in-memory web api for Angular demos and tests that emulates CRUD operations over a RESTy API.
 
-It intercepts Angular `Http` and `HttpClient` requests that would otherwise go to the remote server and redirects them to an in-memory data store that you control.
+Intercepts Angular `Http` and `HttpClient` requests that would otherwise go to the remote server and redirects them to an in-memory data store that you control.
 
 Uses a reactive approach by issuing the Common Pattern with an Async Pipe to populate the main grid of assets.
 
@@ -18,7 +18,7 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 
 ## CORS
 
-* Cross Origin resource sharing (CORS) is resolved by setting up a proxy between the UI running on port 4200 and the database server running on port 3001.
+* Uses Cross Origin resource sharing (CORS) by setting up a proxy between the UI running on port 4200 and the Mongo Atlas database server running on port 3001.
 
 ## Animations
 
@@ -35,7 +35,7 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 
 ## In Memory Data Store
 
-* During early development optionally calls the In Memory Data Store when the MongoDB Atlas RESTfull API is not available.
+* During early development optionally calls the In Memory Data Store when the MongoDB Atlas NOSQL database using a RESTFUL api is not available.
 * Changes between In Memory and REST with a single npm command.
 
 ```ts
@@ -57,10 +57,10 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 
 ## Lazy Loading
 
-* Split the application into multiple bundles.
+* Splits the application into multiple bundles.
 * On startup, preload only what is needed.
 * Backload some feature modules in the background.
-* Asynchronous load some modules on startup.
+* Asynchronous loads some modules on startup.
 
 ## Lazy Loading Authorization
 

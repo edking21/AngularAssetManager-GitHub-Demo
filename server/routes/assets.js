@@ -5,44 +5,17 @@ const Employee = require('../models/employee');
 
 router.get('', (req, res, next) => {
   Asset.aggregate([{
-      "$lookup": {
-        "from": "Employee",
-        "let": {
-          "employeeId": {
-            "$toObjectId": "$employeeId"
-          }
-        },
-        "pipeline": [{
-          "$match": {
-            "$expr": {
-              "$eq": ["$_id", "$$employeeId"]
-            }
-          }
-        }],
-        "as": "assetEmployee"
-      }
+    "$lookup": {
+      from: "students",
+      localField: "studentId",
+      foreignField: "studentId",
+      as: "student"
     }
-    // ,
-    // {"$unwind": "$assetEmployee" },
-    // {
-    //   "$group": {
-    //     "_id": null,
-    //     "allTags": {
-    //       "$addToSet": "$assetEmployee"
-    //     },
-    //     "count": {"$sum": 1}
-    //   }
-    // }
-  ]).exec(function (err, Asset) {
+  }]).exec(function (err, Asset) {
     console.log(Asset[0]);
     if (err) res.json(err);
-    else res.json(Asset[0]);
+    else res.json(Asset);
   });
-//   ], (err, Asset) => {
-//     if (err) res.json(err);
-//     else res.json(Asset);
-//   });
-// });
 });
 
 router.get('hold', function (req, res) {
