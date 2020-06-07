@@ -16,6 +16,10 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 
 * MEAN Stack Project uses Angular Reactive form to ass asset to the database.
 
+## MongoDB Atlas 
+
+* Joins the Student document with the Asset document.  One asset can be owned by many students
+
 ## CORS
 
 * Uses Cross Origin resource sharing (CORS) by setting up a proxy between the UI running on port 4200 and the Mongo Atlas database server running on port 3001.
