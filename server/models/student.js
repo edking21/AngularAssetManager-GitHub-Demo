@@ -3,9 +3,15 @@ const Schema = mongoose.Schema;
 //monggose
 
 // Define collection and schema
-let Student = new Schema({
+let StudentSchema = new Schema({
   student_name: {
-    type: String
+    type: String,
+    required: true
+  },
+  student: {
+    type: String,
+    required: true
+
   },
   student_email: {
     type: String
@@ -25,8 +31,7 @@ let Student = new Schema({
   studentId: {
     type: Number
   }
-}, {
-  collection: 'students'
-})
+}
+);
 
-module.exports = mongoose.model('Student', Student)
+module.exports = mongoose.model('Student', StudentSchema);

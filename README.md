@@ -18,7 +18,7 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 
 ## MongoDB Atlas 
 
-* Joins the Student document with the Asset document.  One asset can be owned by many students
+* Joins the Student document with the Asset document.  One asset can be owned by many students.
 
 ## CORS
 
