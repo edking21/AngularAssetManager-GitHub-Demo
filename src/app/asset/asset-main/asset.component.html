@@ -29,7 +29,7 @@
             <th>Code</th>
             <th>Make</th>
             <th>Category</th>
-            <th>Status</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody *ngFor="let asset of filteredAssets ">
@@ -46,7 +46,7 @@
             <td>{{ asset.assetCode}}</td>
             <td>{{ asset.make}}</td>
             <td>{{ asset.category}}</td>
-            <td>{{ asset.assetStatus}}</td>
+            <td>{{ asset.description}}</td>
             <td>
               <button class="btn btn-outline-primary btn-sm" 
               [routerLink]="['/assets', asset.id, 'edit']">

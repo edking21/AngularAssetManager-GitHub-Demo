@@ -30,18 +30,16 @@ router.use(express.json()); // for parsing application/json
 
 let options = {
   new: true,
-  //rawResult: true,  // Using this will break asset edit
+  //rawResult: true,  // Using this will break asset edit - do not do it
   useFindAndModify: false,
   runValidators: true,
   upsert: true
 };
 
-// create a new asset from the req.body
+// create uses id for filter
 router.put("/assets", function (req, res) {
-  var query = {
-    id: req.body.id
-  };
-  FindAndUpdate(req, query, res);
+  let filter = { id: req.body.id };
+  FindAndUpdate(req,filter,res);
 });
 
 // get the asset body first then update from req.body
@@ -58,7 +56,8 @@ router.put('/assets/:id', function (req, res) {
         }
       });
     }
-    FindAndUpdate(req,foundAsset._id,res);
+    let filter = { _id: foundAsset._id};
+    FindAndUpdate(req,filter,res);
     // res.json(foundAsset._id);
     // res.json(query);
   });
@@ -78,13 +77,14 @@ router.get('/read-asset/:id', function (req, res) {
         }
       });
     }
-    FindAndUpdate(req,query,res);
+    let filter = { _id: foundAsset._id};
+    FindAndUpdate(req,filter,res);
     // res.json(foundAsset._id);
     // res.json(query);
   });
 });
-function FindAndUpdate(req, id, res) {
-  return Asset.findOneAndUpdate(+id, req.body, options,
+function FindAndUpdate(req, filter, res) {
+  return Asset.findOneAndUpdate (filter, req.body, options,
     function (err, result) {
       if (err) {
         res.send(err);

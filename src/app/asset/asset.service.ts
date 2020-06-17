@@ -25,40 +25,15 @@ export class AssetService {
       );
   }
 
-  // getAsset(id: number): Observable<any> {
-  //   let API_URL = `${this.endpoint}/read-asset/${id}`;
-  //   return this.http.get(API_URL, { observe: 'response' })
-  //   .subscribe(resp => {
-  //     if (resp)
-  //     console.log('resp: ', resp);
-  //   }
-
-  //   )
-
-  // }
-
-  efk() {
-    let url = `${this.endpoint}/read-asset/3`;
-    let efk = this.http.get<any>(url, { observe: 'response' })
-      .subscribe(resp => {
-        // Here, resp is of type HttpResponse<MyJsonData>.
-        // You can inspect its headers:
-        console.log(resp.headers.get('X-Custom-Header'));
-        // And access the body directly, which is typed as MyJsonData as requested.
-        console.log(resp.body.someField);
-      });
-  }
-
   getAsset(id: number): Observable<any> {
-    // this.efk();
     let API_URL = `${this.endpoint}/read-asset/${id}`;
     return this.http.get(API_URL, { headers: this.headers })
-      // .pipe(
-      //   map((res: Response) => {
-      //     return res || {}
-      //   }),
-      //   catchError(this.errorMgmt)
-      // )
+      .pipe(
+        map((res: Response) => {
+          return res || {}
+        }),
+        catchError(this.errorMgmt)
+      )
   }
 
   createAsset(asset: Asset): Observable<Asset> {

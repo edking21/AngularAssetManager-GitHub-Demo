@@ -26,6 +26,7 @@
     "jquery": "^3.5.1",
     "mongodb": "^3.5.8",
     "mongoose": "^5.9.15",
+    "path-to-regexp": "^6.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
