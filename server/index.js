@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose  = require('mongoose');
 const config = require('./config/dev');
+const bodyParser = require('body-parser');
 const Asset = require('./models/asset');
 const FakeDb = require('./fake-db-Asset');
 
@@ -16,9 +17,14 @@ mongoose.connect(config.DB_URI , {
 // })
 ;
 
+mongoose.set('debug', true);
+
 const app = express();
 
 app.use("/api/v1/assets", assetRoutes);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, function(){

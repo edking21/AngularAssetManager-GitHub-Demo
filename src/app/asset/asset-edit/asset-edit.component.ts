@@ -83,7 +83,7 @@ export class AssetEditComponent implements OnInit {
 
   saveAsset(): void {
     if (this.isValid()) {
-      if (this.asset.id === 0) {
+      if (!this.asset.id || this.asset.id === 0) {
         this.assetService.createAsset(this.asset).subscribe({
           next: () => this.onSaveComplete(`The new ${this.asset.assetName} was saved`),
           error: err => this.errorMessage = err

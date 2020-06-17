@@ -9,7 +9,7 @@
             "name": "server",
             "request": "launch",
             "type": "chrome",
-            "url": "http://localhost:3001/api/v1/assets",
+            "url": "http://localhost:3001/api/v1/assets/update",
             "webRoot": "${workspaceFolder}"
         },
         {

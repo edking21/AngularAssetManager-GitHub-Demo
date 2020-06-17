@@ -9,10 +9,11 @@ import { Asset } from './asset';
 })
 
 export class AssetService {
-  private assetsUrl = '/api/v1/assets';
+  private assetsUrl = '/api/v1/assets/assets';
   private endpoint: string = "/api/v1/assets";
-  private endpointsave: string = "http://localhost:8000/api";
+  private endpointAlternate: string = "http://localhost:8000/api";
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
+  private hackToCountNewAssets = 900;
 
   constructor(private http: HttpClient) { }
 
@@ -24,52 +25,64 @@ export class AssetService {
       );
   }
 
-  getAsset(id: number): Observable<any> {
-    let API_URL = `${this.endpoint}/read-asset/${id}`;
-    return this.http.get(API_URL, { headers: this.headers })
-      .pipe(
-        map((res: Response) => {
-          return res || {}
-        }),
-        catchError(this.errorMgmt)
-      )
+  // getAsset(id: number): Observable<any> {
+  //   let API_URL = `${this.endpoint}/read-asset/${id}`;
+  //   return this.http.get(API_URL, { observe: 'response' })
+  //   .subscribe(resp => {
+  //     if (resp)
+  //     console.log('resp: ', resp);
+  //   }
+
+  //   )
+
+  // }
+
+  efk() {
+    let url = `${this.endpoint}/read-asset/3`;
+    let efk = this.http.get<any>(url, { observe: 'response' })
+      .subscribe(resp => {
+        // Here, resp is of type HttpResponse<MyJsonData>.
+        // You can inspect its headers:
+        console.log(resp.headers.get('X-Custom-Header'));
+        // And access the body directly, which is typed as MyJsonData as requested.
+        console.log(resp.body.someField);
+      });
   }
 
-  // getAsset(id: number): Observable<Asset> {
-  //   if (id === 0) {
-  //     return of(this.initializeAsset());
-  //   }
-  //   const url = `${this.assetsUrl}/${id}`;
-  //   return this.http.get<Asset>(url)
-  //     .pipe(
-  //       // tap(data => console.log('getAsset: ' + JSON.stringify(data))),
-  //       catchError(this.handleError)
-  //     );
-  // }
-
-
-  // getAsset(id: number): Observable<Asset> {
-  //   if (id === 0) {
-  //     return of(this.initializeAsset());
-  //   }
-  //   const url = `${this.assetsUrl}/${id}`;
-  //   return this.http.get<Asset>(url)
-  //     .pipe(
-  //       // tap(data => console.log('getAsset: ' + JSON.stringify(data))),
-  //       catchError(this.handleError)
-  //     );
-  // }
+  getAsset(id: number): Observable<any> {
+    // this.efk();
+    let API_URL = `${this.endpoint}/read-asset/${id}`;
+    return this.http.get(API_URL, { headers: this.headers })
+      // .pipe(
+      //   map((res: Response) => {
+      //     return res || {}
+      //   }),
+      //   catchError(this.errorMgmt)
+      // )
+  }
 
   createAsset(asset: Asset): Observable<Asset> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    asset.id = null;
-    return this.http.post<Asset>(this.assetsUrl, asset, { headers })
+    this.hackToCountNewAssets += 1;
+    asset.id = this.hackToCountNewAssets;  //fix this
+    return this.http.put<Asset>(this.assetsUrl, asset, { headers })
       .pipe(
-        tap(data => console.log('createAsset: ' + JSON.stringify(data))),
+        tap(() => console.log('created new asset.id: ' + asset.id)),
+        map(() => asset),
         catchError(this.handleError)
       );
   }
 
+  updateAsset(asset: Asset): Observable<Asset> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.assetsUrl}/${asset.id}`;
+    return this.http.put<Asset>(url, asset, { headers })
+      .pipe(
+        tap(() => console.log('update existing asset.id: ' + asset.id)),
+        map(() => asset),
+        catchError(this.handleError)
+      );
+  }
   deleteAsset(id: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.assetsUrl}/${id}`;
@@ -80,17 +93,6 @@ export class AssetService {
       );
   }
 
-  updateAsset(asset: Asset): Observable<Asset> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.assetsUrl}/${asset.id}`;
-    return this.http.put<Asset>(url, asset, { headers })
-      .pipe(
-        tap(() => console.log('updateAsset: ' + asset.id)),
-        // Return the asset on an update
-        map(() => asset),
-        catchError(this.handleError)
-      );
-  }
 
   private handleError(err) {
     // in a real world app, we may send the server to some remote logging infrastructure
