@@ -33,11 +33,8 @@ class FakeDb
     pushEmployeesToDb()
     {
         this.employees.forEach((employee) => {
-            
             const newEmployee = new Employee(employee);
-
             newEmployee.save();
-
         })
     }
 
@@ -46,7 +43,6 @@ class FakeDb
         this.cleanDb();
         this.pushEmployeesToDb();
     }
-
 }
 
 module.exports = FakeDb;

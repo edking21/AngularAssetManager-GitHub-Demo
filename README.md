@@ -22,7 +22,7 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 
 ## CORS
 
-* Uses Cross Origin resource sharing (CORS) by setting up a proxy between the UI running on port 4200 and the Mongo Atlas database server running on port 3001.
+* Uses Cross Origin resource sharing (CORS) by setting up a proxy between the UI running on port 4200 and the Mongo Atlas database server running on port 3002.
 
 ## Animations
 

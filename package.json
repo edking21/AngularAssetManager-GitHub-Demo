@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4202",
     "inMemory": "ng serve",
     "mongoDb": "ng serve --proxy-config proxy.conf.json",
     "mongo": "mongo \"mongodb+srv://assetmanagercluster-juxqa.mongodb.net/test\" --username testuser",

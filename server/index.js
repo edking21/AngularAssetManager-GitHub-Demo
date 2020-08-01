@@ -26,7 +26,7 @@ app.use("/api/v1/assets", assetRoutes);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002
 app.listen(PORT, function(){
-    console.log("Node Server is Running Assets on port 3001");
+    console.log("Node Server is Running Assets on port 3002");
 });
