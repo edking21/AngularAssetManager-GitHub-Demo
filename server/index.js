@@ -7,8 +7,9 @@ const FakeDb = require('./fake-db-Asset');
 
 const assetRoutes = require('./routes/assets');
 
-mongoose.connect(config.DB_URI , { 
-    useNewUrlParser : true ,
+
+    mongoose.connect(config.DB_URI , { 
+        useNewUrlParser : true ,
     useUnifiedTopology: true
 })
 //     .then(() => {

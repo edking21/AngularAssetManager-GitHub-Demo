@@ -10,8 +10,10 @@ import { Asset } from './asset';
 
 export class AssetService {
   private assetsUrl = '/api/v1/assets/assets';
-  private endpoint: string = "/api/v1/assets";
-  private endpointAlternate: string = "http://localhost:8000/api";
+  // tslint:disable-next-line: no-inferrable-types
+  private endpoint: string = '/api/v1/assets';
+  // tslint:disable-next-line: no-inferrable-types
+  private endpointAlternate: string = 'http://localhost:8000/api';
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   private hackToCountNewAssets = 900;
 
@@ -26,20 +28,20 @@ export class AssetService {
   }
 
   getAsset(id: number): Observable<any> {
-    let API_URL = `${this.endpoint}/read-asset/${id}`;
+    const API_URL = `${this.endpoint}/read-asset/${id}`;
     return this.http.get(API_URL, { headers: this.headers })
       .pipe(
         map((res: Response) => {
-          return res || {}
+          return res || {};
         }),
         catchError(this.errorMgmt)
-      )
+      );
   }
 
   createAsset(asset: Asset): Observable<Asset> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.hackToCountNewAssets += 1;
-    asset.id = this.hackToCountNewAssets;  //fix this
+    asset.id = this.hackToCountNewAssets;  // fix this
     return this.http.put<Asset>(this.assetsUrl, asset, { headers })
       .pipe(
         tap(() => console.log('created new asset.id: ' + asset.id)),
@@ -103,7 +105,7 @@ export class AssetService {
   }
 
 
-  // Error handling 
+  // Error handling
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

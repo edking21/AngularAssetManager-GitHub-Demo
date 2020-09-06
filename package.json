@@ -3,9 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4202",
+
+    "1cmd-note": "Run 1cmd if a port 3002 is needed for a proxy and cors, test with postman",
+    "1cmd": "node server/index.js",
+
+    "2cmd-note": "Run 2cmd if not using a proxy at port 3002",
+    "2cmd": "ng serve --port 4202",
+
+    "3cmd": "ng serve --proxy-config src/proxy.conf.json",
     "inMemory": "ng serve",
-    "mongoDb": "ng serve --proxy-config proxy.conf.json",
     "mongo": "mongo \"mongodb+srv://assetmanagercluster-juxqa.mongodb.net/test\" --username testuser",
     "build": "ng build",
     "test": "ng test",
