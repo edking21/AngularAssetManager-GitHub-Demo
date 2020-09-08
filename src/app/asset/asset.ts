@@ -5,11 +5,11 @@ export interface Asset {
   assetName: string;
   assetCode: string;
   category: string;
+  tags?: string[];
   location?: string;
   imageUrl:string;
   make?: string;
   model?: string;
-  tags?: string[];
   description?: string;
   assetStatus?: string;
 }

@@ -13,17 +13,17 @@
             "webRoot": "${workspaceFolder}"
         },
         {
-            "name": "inMemory",
+            "name": "port4200",
             "request": "launch",
             "type": "chrome",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
         },
         {
-            "name": "mongoDb",
+            "name": "port4202",
             "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:4200",
+            "url": "http://localhost:4202",
             "webRoot": "${workspaceFolder}"
         }
     ]

@@ -4,11 +4,12 @@ import { AssetComponent } from "./asset-main/asset.component";
 import { AssetDetailComponent } from "./asset-detail/asset-detail.component";
 import { AssetEditComponent } from "./asset-edit/asset-edit.component";
 
-import { SharedModule } from '../shared/shared.module';
-import { AssetResolver } from './asset-main/asset-resolver.service';
 import { AssetEditInfoComponent } from './asset-edit/asset-edit-info.component';
 import { AssetEditTagsComponent } from './asset-edit/asset-edit-tags.component';
+import { AssetResolver } from './asset-main/asset-resolver.service';
 import { AssetEditGuard } from './asset-edit/asset-edit.guard';
+
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [

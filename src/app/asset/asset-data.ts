@@ -11,13 +11,13 @@ export class AssetData implements InMemoryDbService {
         id: 1,
         assetName: 'Laptop',
         assetCode: "CX-235",
-        category: 'Computer',
         location: 'St Louis',
         imageUrl: 'assets/images/laptop.png',
         make: 'Lenovo',
         model: 'IdeaPad',
         description: 'Intel I7 64G 3.5GH',
         assetStatus: 'CheckedOut',
+        category: 'Computer',
         tags: ['computer', 'laptop', 'lenova'  ]
       },
       {
@@ -25,13 +25,13 @@ export class AssetData implements InMemoryDbService {
         id: 2,
         assetName: "Power Supply",
         assetCode: "CTX-999",
-        category: 'Computer',
         location: 'St Louis',
         imageUrl: 'assets/images/powersupply.jpg',
         make: 'Dell',
         model: 'G5 Gaming',
         description: 'Intel I6 32G 3.5GH',
         assetStatus: 'CheckedOut',
+        category: 'Computer',
         tags: ['computer', 'desktop', 'gaming'  ]
       },
       {
@@ -39,13 +39,13 @@ export class AssetData implements InMemoryDbService {
         id: 3,
         assetName: "Monitor",
         assetCode: "A7B-123",
-        category: 'Monitor',
         location: 'St Louis',
         imageUrl: 'assets/images/monitor.png',
         make: 'Acer',
         model: 'Nitro Gaming',
         description: '24 inch',
         assetStatus: 'CheckedOut',
+        category: 'Monitor',
         tags: ['monitor', 'acer'  ]
       },
       {
@@ -53,13 +53,13 @@ export class AssetData implements InMemoryDbService {
         id: 4,
         assetName: "Camera",
         assetCode: "B7Z-634",
-        category: 'ComputerParts',
         location: 'St Louis',
         imageUrl: 'assets/images/camera.png',
         make: 'Webcam',
         model: 'W123',
         description: '720P',
-        assetStatus: 'CheckedIn'
+        assetStatus: 'CheckedIn',
+        category: 'ComputerParts'
       },
       {
         _id: '0',

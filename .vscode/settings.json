@@ -1,4 +1,6 @@
 {
-    "editor.fontSize": 20,
-    "vscode.tsc.compiler.alertTSConfigChanges": "never"
+    "files.autoSave": "afterDelay",
+    "html.format.wrapAttributes": "force-aligned",
+    "vscode.tsc.compiler.alertTSConfigChanges": "never",
+    "vscode.tsc.compiler.alertOnError": "never"
 }

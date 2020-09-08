@@ -6,6 +6,16 @@ Optionally intercepts Angular `Http` and `HttpClient` requests that would otherw
 
 Uses a reactive approach by issuing the Common Pattern with an Async Pipe to populate the main grid of assets.
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.1.
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
 ## MEAN Stack Project
 
 * MEAN stack project is a (MongoDB, Express.js, AngularJS (or Angular), and Node.js) open-source JavaScript software stack for building dynamic web sites and web applications.  
@@ -14,7 +24,7 @@ Uses a reactive approach by issuing the Common Pattern with an Async Pipe to pop
 
 * MEAN Stack Project adds assets using MEAN Stack REST APIs with Angular Material
 
-* MEAN Stack Project uses Angular Reactive form to ass asset to the database.
+* MEAN Stack Project uses Angular Reactive form to assign asset to the database.
 
 ## MongoDB Atlas 
 

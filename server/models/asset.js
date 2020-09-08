@@ -40,9 +40,9 @@ const AssetSchema = new Schema({
   model: {
     type: String
   },
-  tags: {
+  tags: [{
     type: String
-  },
+  }],
   description: {
     type: String
   },

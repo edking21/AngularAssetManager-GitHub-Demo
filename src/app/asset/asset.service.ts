@@ -22,12 +22,15 @@ export class AssetService {
   getAssets() {
     return this.http.get(`${this.endpoint}`)
       .pipe(
-        tap(data => console.log(JSON.stringify(data))),
+        // tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
 
   getAsset(id: number): Observable<any> {
+    if (id === 0) {
+      return of(this.initializeAsset());
+    }
     const API_URL = `${this.endpoint}/read-asset/${id}`;
     return this.http.get(API_URL, { headers: this.headers })
       .pipe(
@@ -95,6 +98,7 @@ export class AssetService {
       assetName: null,
       assetCode: null,
       category: null,
+      tags: [],
       location: null,
       make: null,
       model: null,

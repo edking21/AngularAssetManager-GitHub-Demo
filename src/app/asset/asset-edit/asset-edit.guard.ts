@@ -14,7 +14,7 @@ export class AssetEditGuard implements CanDeactivate<AssetEditComponent> {
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (component.isDirty) {
-      const assetName = component.asset.assetName || 'New Product';
+      const assetName = component.asset.assetName || 'New Asset';
       //use backtick to display asset litteral
       return confirm(`Navigate away and lose all changes to ${assetName}?`);
     }
