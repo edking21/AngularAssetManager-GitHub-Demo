@@ -1,54 +1,48 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const AutoIncrement = require("mongoose-sequence")(mongoose);
 
 const AssetSchema = new Schema({
-  id: {
-    type: Number,
-    required: true
-  },
-  studentId: {
-    type: Number
-  },
-  students: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Student'
-  }],
   assetName: {
     type: String,
     required: true,
-    max: [127, "Max Length is 127 characters"]
+    max: [127, "Max Length is 127 characters"],
   },
   assetCode: {
     type: String,
     required: true,
-    max: [127, "Max Length is 127 characters"]
+    max: [127, "Max Length is 127 characters"],
   },
   category: {
     type: String,
     required: true,
-    max: [127, "Max Length is 127 characters"]
+    max: [127, "Max Length is 127 characters"],
   },
   location: {
-    type: String
+    type: String,
   },
   imageUrl: {
-    type: String
+    type: String,
   },
   make: {
-    type: String
+    type: String,
   },
   model: {
-    type: String
+    type: String,
   },
-  tags: [{
-    type: String
-  }],
+  tags: [
+    {
+      type: String,
+    },
+  ],
   description: {
-    type: String
+    type: String,
   },
   assetStatus: {
-    type: String
-  }
+    type: String,
+  },
 });
+
+AssetSchema.plugin(AutoIncrement, { inc_field: "id" });
 
 module.exports = mongoose.model("Asset", AssetSchema);

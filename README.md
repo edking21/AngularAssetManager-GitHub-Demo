@@ -26,7 +26,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 * MEAN Stack Project uses Angular Reactive form to assign asset to the database.
 
-## MongoDB Atlas 
+## MongoDB Atlas
 
 * Joins the Student document with the Asset document.  One asset can be owned by many students.
 
@@ -100,15 +100,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 * Change detection will notify when user changes the grid contents.
 * Demo apps that need to simulate CRUD data persistence operations without a real server.
 You won't have to build and start a test server.
-
-* Simulate operations against data collections that aren't yet implemented on your dev/test server. 
+* Simulate operations against data collections that aren't yet implemented on your dev/test server.
 You can pass requests thru to the dev/test server for collections that are supported.
-
 * Write unit test apps that read and write data.
 Avoid the hassle of intercepting multiple http calls and manufacturing sequences of responses.
 The in-memory data store resets for each test so there is no cross-test data pollution.
-
 * End-to-end tests. If you can toggle the app into test mode
 using the in-memory web api, you won't disturb the real database.
 This can be especially useful for CI (continuous integration) builds.
-

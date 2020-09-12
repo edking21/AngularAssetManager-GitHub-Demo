@@ -44,10 +44,11 @@ export class AssetService {
   createAsset(asset: Asset): Observable<Asset> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.hackToCountNewAssets += 1;
-    asset.id = this.hackToCountNewAssets;  // fix this
-    return this.http.put<Asset>(this.assetsUrl, asset, { headers })
+    delete asset._id;
+    asset.id = null;
+    return this.http.post<Asset>(this.assetsUrl, asset, { headers })
       .pipe(
-        tap(() => console.log('created new asset.id: ' + asset.id)),
+        tap(data => console.log('createAsset: ' +  JSON.stringify(data))),
         map(() => asset),
         catchError(this.handleError)
       );

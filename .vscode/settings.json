@@ -2,5 +2,6 @@
     "files.autoSave": "afterDelay",
     "html.format.wrapAttributes": "force-aligned",
     "vscode.tsc.compiler.alertTSConfigChanges": "never",
-    "vscode.tsc.compiler.alertOnError": "never"
+    "vscode.tsc.compiler.alertOnError": "never",
+    "debug.javascript.usePreview": true 
 }

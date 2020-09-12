@@ -14,37 +14,17 @@ export class AssetEditComponent implements OnInit {
   pageTitle = 'Asset Edit';
   errorMessage: string;
 
+  asset: Asset;
   private dataIsValid: { [key: string]: boolean } = {};
-
-  get isDirty(): boolean {
-    // this will fail if the two objects are not in the same order
-    return (
-      JSON.stringify(this.originalAsset) !== JSON.stringify(this.currentAsset)
-    );
-  }
-
-  private currentAsset: Asset;
-  private originalAsset: Asset;
-
-  get asset(): Asset {
-    return this.currentAsset;
-  }
-
-  set asset(value: Asset) {
-    this.currentAsset = value;
-    // clone the object to retain a copy - using the spread operator
-    this.originalAsset = { ...value };
-  }
 
   constructor(
     private assetService: AssetService,
     private messageService: MessageService,
-    private actRoute: ActivatedRoute,
-    private router: Router
-  ) {}
+    private route: ActivatedRoute,
+    private router: Router  ) {}
 
   ngOnInit(): void {
-    this.actRoute.data.subscribe((data) => {
+    this.route.data.subscribe((data) => {
       const resolvedData: AssetResolved = data['resolvedData'];
       this.errorMessage = resolvedData.error;
       this.onAssetRetrieved(resolvedData.asset);
@@ -91,26 +71,17 @@ export class AssetEditComponent implements OnInit {
     );
   }
 
-  reset(): void {
-    this.dataIsValid = null;
-    this.currentAsset = null;
-    this.originalAsset = null;
-  }
 
   saveAsset(): void {
     if (this.isValid()) {
-      if (!this.asset.id || this.asset.id === 0) {
+      if ( this.asset.id === 0) {
         this.assetService.createAsset(this.asset).subscribe({
-          next: () =>
-            this.onSaveComplete(`The new ${this.asset.assetName} was saved`),
+          next: () => this.onSaveComplete(`The new ${this.asset.assetName} was saved`),
           error: (err) => (this.errorMessage = err),
         });
       } else {
         this.assetService.updateAsset(this.asset).subscribe({
-          next: () =>
-            this.onSaveComplete(
-              `The updated ${this.asset.assetName} was saved`
-            ),
+          next: () => this.onSaveComplete(    `The updated ${this.asset.assetName} was saved`),
           error: (err) => (this.errorMessage = err),
         });
       }
@@ -123,7 +94,7 @@ export class AssetEditComponent implements OnInit {
     if (message) {
       this.messageService.addMessage(message);
     }
-    this.reset();
+
     // Navigate back to the asset list
     this.router.navigate(['/assets']);
   }
