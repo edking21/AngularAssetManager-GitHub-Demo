@@ -30,6 +30,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 * Joins the Student document with the Asset document.  One asset can be owned by many students.
 
+## Mongoose
+
+* Uses mongoose-error-handler middleware creating a consistent way to process errors..
+
 ## CORS
 
 * Uses Cross Origin resource sharing (CORS) by setting up a proxy between the UI running on port 4200 and the Mongo Atlas database server running on port 3002.

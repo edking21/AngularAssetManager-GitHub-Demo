@@ -10,6 +10,7 @@ import { Asset } from './asset';
 
 export class AssetService {
   private assetsUrl = '/api/v1/assets/assets';
+  private createUrl = '/api/v1/assets/create';
   // tslint:disable-next-line: no-inferrable-types
   private endpoint: string = '/api/v1/assets';
   // tslint:disable-next-line: no-inferrable-types
@@ -43,10 +44,7 @@ export class AssetService {
 
   createAsset(asset: Asset): Observable<Asset> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.hackToCountNewAssets += 1;
-    delete asset._id;
-    asset.id = null;
-    return this.http.post<Asset>(this.assetsUrl, asset, { headers })
+    return this.http.put<Asset>(this.createUrl, asset, { headers })
       .pipe(
         tap(data => console.log('createAsset: ' +  JSON.stringify(data))),
         map(() => asset),

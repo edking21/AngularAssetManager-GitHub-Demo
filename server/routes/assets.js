@@ -1,21 +1,10 @@
+const { ResolveEnd } = require("@angular/router");
 const express = require("express");
 const router = express.Router();
-const Asset = require("../models/asset");
 
-router.put("/updateraw/:id", function (req, res) {
-  console.log("UpdateRaw id: ", req.params.id);
-  console.log("req.body: ", req.body);
+Asset = require("../models/asset");
 
-  Asset.findOneAndUpdate(req.params.id, req.body, function (err, updatedAsset) {
-    if (err) {
-      console.log(err.message);
-      res.send(err);
-    } else {
-      console.log("updatedAsset: ", updatedAsset);
-      res.send(updatedAsset);
-    }
-  });
-});
+mongooseErrorHandler = require('mongoose-error-handler')
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
@@ -33,11 +22,25 @@ let options = {
   upsert: true,
 };
 
+//delete one asset
+router.delete("/assets/:id", function (req, res) {
+  Asset.deleteOne({ id:req.params.id }, (err, result) => {
+    if (err) 
+      res.send(err)
+    else 
+      res.send(result)
+  })
+})
+
+//insert one asset
 router.put("/create", function (req, res) {
   Asset.create({
-    assetName: "Apple iPhone",
-    assetCode: "1Ab123",
-    category: "computer",
+    assetName: req.body.assetName,
+    assetCode: req.body.assetCode,
+    make: req.body.make,
+    category: req.body.category,
+    description: req.body.description,
+    tags: req.body.tags,
   })
     .then((data) => {
       res.json(data);
@@ -47,6 +50,7 @@ router.put("/create", function (req, res) {
     });
 });
 
+//get all assets
 router.get("/assets", function (req, res) {
   Asset.find({})
     .then(function (Asset) {
