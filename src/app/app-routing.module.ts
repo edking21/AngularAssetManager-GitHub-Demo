@@ -10,12 +10,12 @@ import { SelectiveStrategy } from './selective-strategy.service';
         RouterModule.forRoot([
             { path: 'welcome', component: WelcomeComponent },
 
-            //implements lazy loading the assets module
-            //assets wil not load on startup
+            // implements lazy loading the assets module
+            // assets wil not load on startup
             {
                 path: 'assets',
                 canActivate: [AuthGuard],
-                data: { preload: false },  //this route will use the preload strategy
+                data: { preload: false },  // this route will use the preload strategy
                 loadChildren: () =>
                     import('./asset/asset.module').then(m => m.AssetModule)
             },
