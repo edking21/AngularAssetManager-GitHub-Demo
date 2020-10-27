@@ -27,7 +27,7 @@
             "name": "server",
             "request": "launch",
             "type": "chrome",
-            "url": "http://localhost:3002/api/v1/assets/create",
+            "url": "http://localhost:3002/api/v1/assets",
             "webRoot": "${workspaceFolder}"
         },
         {

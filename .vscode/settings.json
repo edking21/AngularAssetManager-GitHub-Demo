@@ -3,5 +3,6 @@
     "html.format.wrapAttributes": "force-aligned",
     "vscode.tsc.compiler.alertTSConfigChanges": "never",
     "vscode.tsc.compiler.alertOnError": "never",
-    "debug.javascript.usePreview": true 
+    "debug.javascript.usePreview": true,
+    "editor.fontSize": 18
 }
